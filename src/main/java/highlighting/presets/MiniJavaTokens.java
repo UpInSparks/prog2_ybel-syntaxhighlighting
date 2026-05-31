@@ -32,7 +32,7 @@ public final class MiniJavaTokens {
             MiniJavaColours.KEYWORD),
         // numbers
         Token.of(
-            Pattern.compile("-?\\b\\d+(\\.\\d+)?\\b"), MiniJavaColours.NUMBER).)
+            Pattern.compile("-?\\b\\d+(\\.\\d+)?\\b"), MiniJavaColours.NUMBER),)
         }
 }
 
