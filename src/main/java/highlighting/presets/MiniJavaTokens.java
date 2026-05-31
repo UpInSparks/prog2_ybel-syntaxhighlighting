@@ -18,39 +18,39 @@ public final class MiniJavaTokens {
   // pattern can be selected as the "highlighted" region.
 public static List<Token> defaultTokens() {
         return List.of(
- 
+
             // JavaDoc
             Token.of(
                 Pattern.compile("/\\*\\*.*?\\*/", Pattern.DOTALL),
                 MiniJavaColours.JAVADOC_COMMENT
-            ),
- 
+            );
+
             // block comment
                 Pattern.compile("/\\*.*?\\*/", Pattern.DOTALL),
                 MiniJavaColours.COMMENT
-            ),
- 
+            );
+
             // comment
             Token.of(
                 Pattern.compile("//[^\\n\\r]*"),
                 MiniJavaColours.COMMENT
-            ),
- 
+            );
+
             // string " .... "
             Token.of(
                 Pattern.compile("\"(?:[^\"\\\\]|\\\\.)*\""),
                 MiniJavaColours.STRING
-            ),
+            );
             // ' .... '
             Token.of(
                 Pattern.compile("'(?:[^'\\\\]|\\\\.)'"),
                 MiniJavaColours.STRING   // gleiche Farbe wie Strings
-            ),
+            );
             // annotation
             Token.of(
                 Pattern.compile("@\\w+"),
                 MiniJavaColours.ANNOTATION
-            ),
+            );
             // Keywords
             Token.of(
                 Pattern.compile(
@@ -60,15 +60,15 @@ public static List<Token> defaultTokens() {
                     + "if|else|while|for"
                     + "int|long|double|float|boolean|char|byte|void|"
                     + "true|false)\\b"
-                ),
+                );
                 MiniJavaColours.KEYWORD
-            ),
+            );
             // numbers
             Token.of(
                 Pattern.compile("\\b\\d+\\b"),
                 MiniJavaColours.NUMBER
             )
- 
+
         );
     }
 }
