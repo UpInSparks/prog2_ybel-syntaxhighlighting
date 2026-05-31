@@ -16,13 +16,59 @@ public final class MiniJavaTokens {
   // numeric literals, operators, brackets, whitespace), following the same pattern. Each token is
   // defined by a regular expression and a colour. Optionally, a specific capturing group within the
   // pattern can be selected as the "highlighted" region.
-  public static List<Token> defaultTokens() {
-    return List.of(
-        // Example: string literals (students should define further tokens below)
-        Token.of(Pattern.compile("\"([^\"\\\\]|\\\\.)*\""), MiniJavaColours.STRING_LITERAL_COLOUR)
-
-        // TODO: Define additional tokens for MiniJava, e.g. character literals, keywords,
-        // annotations, comments, identifiers, numbers, operators, etc.
+public static List<Token> defaultTokens() {
+        return List.of(
+ 
+            // JavaDoc
+            Token.of(
+                Pattern.compile("/\\*\\*.*?\\*/", Pattern.DOTALL),
+                MiniJavaColours.JAVADOC_COMMENT
+            ),
+ 
+            // block comment
+                Pattern.compile("/\\*.*?\\*/", Pattern.DOTALL),
+                MiniJavaColours.COMMENT
+            ),
+ 
+            // comment
+            Token.of(
+                Pattern.compile("//[^\\n\\r]*"),
+                MiniJavaColours.COMMENT
+            ),
+ 
+            // string " .... "
+            Token.of(
+                Pattern.compile("\"(?:[^\"\\\\]|\\\\.)*\""),
+                MiniJavaColours.STRING
+            ),
+            // ' .... '
+            Token.of(
+                Pattern.compile("'(?:[^'\\\\]|\\\\.)'"),
+                MiniJavaColours.STRING   // gleiche Farbe wie Strings
+            ),
+            // annotation
+            Token.of(
+                Pattern.compile("@\\w+"),
+                MiniJavaColours.ANNOTATION
+            ),
+            // Keywords
+            Token.of(
+                Pattern.compile(
+                    "\\b(package|import|class|interface|enum|extends|implements|"
+                    + "public|private|static|abstract|"
+                    + "return|null|"
+                    + "if|else|while|for"
+                    + "int|long|double|float|boolean|char|byte|void|"
+                    + "true|false)\\b"
+                ),
+                MiniJavaColours.KEYWORD
+            ),
+            // numbers
+            Token.of(
+                Pattern.compile("\\b\\d+\\b"),
+                MiniJavaColours.NUMBER
+            )
+ 
         );
-  }
+    }
 }
