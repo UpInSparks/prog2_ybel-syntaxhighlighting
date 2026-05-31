@@ -20,4 +20,4 @@ public final class MiniJavaColours {
     public static final Color ANNOTATION      = ANNOTATION_COLOUR;
     public static final Color KEYWORD         = KEYWORD_COLOUR;
     public static final Color NUMBER          = NUMBER_COLOUR;
-}}
+}
