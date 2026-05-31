@@ -1,49 +1,41 @@
-name: CI
-
+name: Github CI
 on:
-  pull_request:
-  workflow_dispatch:
+    pull_request:
+    workflow_dispatch:
 
 jobs:
+    # gradle test
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v6
+            -   uses: actions/setup-java@v5
+                with:
+                    java-version: '25'
+                    distribution: 'temurin'
+            -   uses: gradle/actions/wrapper-validation@v6
+            -   run: ./gradlew build
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    test:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v6
+            -   uses: actions/setup-java@v5
+                with:
+                    java-version: '25'
+                    distribution: 'temurin'
+            -   uses: gradle/actions/wrapper-validation@v6
+            -   run: ./gradlew test
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Compile
-        run: mvn compile --no-transfer-progress
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Run JUnit tests
-        run: mvn test --no-transfer-progress
-
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Check formatting with Spotless
-        run: mvn spotless:check --no-transfer-progress
+    format:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v6
+            -   uses: actions/setup-java@v5
+                with:
+                    java-version: '25'
+                    distribution: 'temurin'
+            -   uses: gradle/actions/wrapper-validation@v6
+            -   run: ./gradlew spotlessCheck
