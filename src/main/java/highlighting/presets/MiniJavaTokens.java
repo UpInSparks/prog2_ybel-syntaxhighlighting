@@ -12,35 +12,35 @@ public static List<Token> defaultTokens() {
             // JavaDoc
             Token.of(
                 Pattern.compile("/\\*\\*.*?\\*/", Pattern.DOTALL),
-                MiniJavaColours.JAVADOC_COMMENT
+                MiniJavaColours.JAVADOC_COMMENT_COLOUR
             ),
 
             // block comment
             Token.of(
                 Pattern.compile("/\\*.*?\\*/", Pattern.DOTALL),
-                MiniJavaColours.COMMENT
+                MiniJavaColours.LINE_COMMENT_COLOUR
             ),
 
             // comment
             Token.of(
                 Pattern.compile("//[^\\n\\r]*"),
-                MiniJavaColours.COMMENT
+                MiniJavaColours.LINE_COMMENT_COLOUR
             ),
 
             // string " .... "
             Token.of(
                 Pattern.compile("\"(?:[^\"\\\\]|\\\\.)*\""),
-                MiniJavaColours.STRING
+                MiniJavaColours.STRING_LITERAL_COLOUR
             ),
             // ' .... '
             Token.of(
                 Pattern.compile("'(?:[^'\\\\]|\\\\.)'"),
-                MiniJavaColours.STRING   // gleiche Farbe wie Strings
+                MiniJavaColours.STRING_LITERAL_COLOUR   // gleiche Farbe wie Strings
             ),
             // annotation
             Token.of(
                 Pattern.compile("@\\w+"),
-                MiniJavaColours.ANNOTATION
+                MiniJavaColours.ANNOTATION_COLOUR
             ),
             // Keywords
             Token.of(
@@ -52,12 +52,12 @@ public static List<Token> defaultTokens() {
                     + "int|long|double|float|boolean|char|byte|void|"
                     + "true|false)\\b"
                 ),
-                MiniJavaColours.KEYWORD
+                MiniJavaColours.KEYWORD_COLOUR
             ),
             // numbers
             Token.of(
                 Pattern.compile("\\b\\d+\\b"),
-                MiniJavaColours.NUMBER
+                MiniJavaColours.KEYWORD_COLOUR
             )
 
         );
