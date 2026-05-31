@@ -31,6 +31,7 @@ public final class MiniJavaTokens {
                     + "true|false)\\b"),
             MiniJavaColours.KEYWORD),
         // numbers
-        Token.of(Pattern.compile("\\b\\d+\\b"), MiniJavaColours.NUMBER));
+        Token.of(
+            Pattern.compile("-?\\b\\d+(\\.\\d+)?\\b"), MiniJavaColours.NUMBER)
   }
 }
