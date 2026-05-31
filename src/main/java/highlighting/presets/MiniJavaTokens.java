@@ -16,6 +16,7 @@ public static List<Token> defaultTokens() {
             ),
 
             // block comment
+            Token.of(
                 Pattern.compile("/\\*.*?\\*/", Pattern.DOTALL),
                 MiniJavaColours.COMMENT
             ),
